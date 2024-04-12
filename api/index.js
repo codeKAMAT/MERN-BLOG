@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoute from './routes/user.route.js';
+import userRoutes from './routes/user.route.js';
+import authRoutes from './routes/auth.route.js'
 
 dotenv.config();
 
@@ -15,8 +16,12 @@ console.log("MOngoDB connected");
 
 const app = express();
 
+//allow json
+app.use(express.json());
+
 app.listen(6000, () => {
     console.log('Server is running on port 6000!!!!');
 });
   
-app.use('/api/user', userRoute);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
